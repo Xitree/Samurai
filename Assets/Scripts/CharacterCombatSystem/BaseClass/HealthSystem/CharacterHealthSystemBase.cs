@@ -85,7 +85,7 @@ namespace UGG.Health
 
         public virtual void TakeDamager(float damager)
         {
-            throw new NotImplementedException();
+            
         }
 
         public virtual void TakeDamager(string hitAnimationName)
@@ -95,7 +95,7 @@ namespace UGG.Health
 
         public virtual void TakeDamager(float damager, string hitAnimationName)
         {
-            throw new NotImplementedException();
+            
         }
 
         public virtual void TakeDamager(float damagar, string hitAnimationName, Transform attacker) {

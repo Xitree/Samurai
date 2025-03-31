@@ -16,7 +16,7 @@ namespace UGG.Health
         private int _hitCount;
         private bool _isInCounterAttackState;//处于反击状态无法打断攻击
         
-        private int _aiConsecutiveParryCount;//TODO ai累计弹反次数
+        private int _aiConsecutiveParryCount;// ai累计弹反次数
 
         private void Start() {
             _hitCount = 0;

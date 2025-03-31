@@ -46,4 +46,12 @@ public enum E_EventType
     /// 竖直热键 -1~1的事件监听
     /// </summary>
     E_Input_Vertical,
+    /// <summary>
+    /// 对话开始
+    /// </summary>
+    E_Dialongue_Start,
+    /// <summary>
+    /// 对话结束
+    /// </summary>
+    E_Dialongue_End,
 }

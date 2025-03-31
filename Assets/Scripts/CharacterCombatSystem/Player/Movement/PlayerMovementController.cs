@@ -41,6 +41,7 @@ namespace UGG.Move{
         //animationID
         private int crouchID = Animator.StringToHash("Crouch");
 
+        public bool isTalking;
 
         #region 内部函数
 
@@ -78,6 +79,7 @@ namespace UGG.Move{
         #region 条件
 
         private bool CanMoveContro() {
+            if (isTalking) return false;
             return isOnGround && characterAnimator.CheckAnimationTag("Motion") ||
                    characterAnimator.CheckAnimationTag("CrouchMotion") ||
                    characterAnimator.CheckAnimationTag("Parry");

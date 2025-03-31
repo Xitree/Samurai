@@ -14,18 +14,12 @@ public class LoadingScreen : MonoBehaviour
     {
         // 初始化进度条为0
         SetProgress(0);
-        progressBar.gameObject.SetActive(false);
-        progressText.gameObject.SetActive(false);
+        progressBar.gameObject.SetActive(true);
+        progressText.gameObject.SetActive(true);
+        // 开始真正的资源加载
+        StartCoroutine(LoadSceneAsync());
     }
-
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            progressBar.gameObject.SetActive(true);
-            progressText.gameObject.SetActive(true);
-            // 开始真正的资源加载
-            StartCoroutine(LoadSceneAsync());
-        }
-    }
+    
 
     // 设置进度条的值
     private void SetProgress(float progress)
@@ -55,6 +49,8 @@ public class LoadingScreen : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
                 
                 asyncLoad.allowSceneActivation = true; // 允许激活场景
+                progressBar.gameObject.SetActive(false);
+                progressText.gameObject.SetActive(false);
                 break;
             }
             else

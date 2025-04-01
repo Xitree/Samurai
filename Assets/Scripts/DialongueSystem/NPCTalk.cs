@@ -8,13 +8,15 @@ public class NPCTalk : MonoBehaviour
 {
     [SerializeField]
     private DialogueData dialogueData;
+    private DialogueTip _dialogueTip;// 对话提示图标
     private Transform _playerTransform; // 玩家的Transform
-    private readonly float _interactionRange = 1f; // 交互距离
+    private readonly float _interactionRange = 1.2f; // 交互距离
     private bool _onTalk = false; // 是否正在对话
     
     private void Awake() {
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // 假设玩家有一个Tag为"Player"
-        
+        _dialogueTip = transform.Find("DialogueTip").GetComponent<DialogueTip>();
+        if(_dialogueTip) _dialogueTip.gameObject.SetActive(true);
     }
 
     private void Update() {
@@ -24,10 +26,6 @@ public class NPCTalk : MonoBehaviour
     private void Talking() {
         if (Vector3.Distance(_playerTransform.position, transform.position) <= _interactionRange) {
             
-            if (!_onTalk) {
-                //TODO 显示对话图标
-                
-            }
             if (CharacterInputSystem.Instance.Interact && !_onTalk) {
                 //监听对话结束事件
                 EventCenter.Instance.AddEventListener(E_EventType.E_Dialongue_End, () => {
@@ -38,9 +36,8 @@ public class NPCTalk : MonoBehaviour
                 TriggerDialogue();
                 _onTalk = true;
             }
-        } else {
-            //TODO 隐藏对话图标
         }
+        _dialogueTip.gameObject.SetActive(!_onTalk);
     }
     
     // 触发对话
